@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-login',
   imports: [MatInputModule, MatCardModule],
-  standalone: true,
   template: `
     <div class="flex w-screen h-screen justify-center items-center">
       <form class="example-form" class="flex flex-col">
