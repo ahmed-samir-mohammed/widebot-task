@@ -71,11 +71,10 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe({
         next: (user) => {
-          debugger;
           if (user.role === Role.Admin) {
             this.router.navigateByUrl('/admin');
           } else if (user.role === Role.User) {
-            this.router.navigateByUrl('/profile/34');
+            this.router.navigateByUrl('/profile');
           }
         },
       });
