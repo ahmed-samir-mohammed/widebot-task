@@ -1,4 +1,4 @@
-# WidebotTask
+# WidebotTask - Part 1
 
 This project is a **User Management System** developed using **Angular 19**. It features authentication, user management (CRUD operations), role-based access control (RBAC), and a dashboard displaying statistics and recent activities.
 
@@ -21,6 +21,7 @@ This project is a **User Management System** developed using **Angular 19**. It 
 The project follows a modular architecture to ensure scalability and maintainability.
 
 ### **Directory Tree:**
+
 ```
 src/
 ├── app/
@@ -96,9 +97,11 @@ This project uses a JSON Server as a mock API. To start the server, run:
    npm install -g json-server
    ```
 2. Start the server:
+
    ```bash
    json-server --watch db.json --port 3000
    ```
+
    Replace `db.json` with the path to your JSON data file.
 
 3. Open your browser and navigate to `http://localhost:3000/` to access the API.
@@ -158,3 +161,44 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## **Additional Resources**
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# WidebotTask - Part 2
+
+# **Code Review Report**
+
+### **Identified Issues and Solutions**
+
+**State Management:**
+
+- **Issue:** `dashboardSubject` in `dashboard.service.ts` is used inefficiently for state management, leading to code duplication and potential inconsistencies.
+- **Solution:** Implement NgRx or Akita for centralized state management. Separate state logic from components and use selectors for state access.
+
+**Memory Leaks:**
+
+- **Issue:** Subscriptions in `dashboard.component.ts` and `widget.component.ts` are not properly unsubscribed, risking memory leaks.
+- **Solution:** Use `takeUntil` with a dedicated `Subject` for cleanup or replace manual subscriptions with `AsyncPipe` in templates.
+
+**Code Duplication:**
+
+- **Issue:** Repeated logic for fetching and refreshing widgets is present in multiple components (`dashboard.component.ts` and `widget.component.ts`).
+- **Solution:** Consolidate the logic into reusable methods in a shared service or utility class.
+
+**Error Handling:**
+
+- **Issue:** Minimal or missing error handling for API calls, leading to poor user experience during failures.
+- **Solution:** Use RxJS `catchError` operator to gracefully handle errors and provide user-friendly messages. Introduce a global error handler service.
+
+**Unclear Variable Names:**
+
+- **Issue:** Ambiguous names like `dashboardSubject` and `data` reduce readability.
+- **Solution:** Use descriptive names like `dashboardState$` and `widgetConfig$` to clearly indicate purpose.
+
+**Loading State Management:**
+
+- **Issue:** `loading` variable in `dashboard.component.ts` is not effectively synchronized with API operations.
+- **Solution:** Use `finalize` operator in RxJS pipelines to manage loading state transitions.
+
+**Documentation:**
+
+- **Issue:** Functions and components lack comments explaining their purpose and usage, reducing maintainability.
+- **Solution:** Add clear comments and JSDoc annotations for functions and classes.
