@@ -1,0 +1,34 @@
+{
+  "USERS": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "role": 1,
+      "details": {
+        "email": "admin@admin.com",
+        "name": "Ahmed Samir"
+      }
+    },
+    {
+      "id": "7668",
+      "details": {
+        "name": "user",
+        "email": "user@user.cd"
+      },
+      "role": 2,
+      "password": "user123",
+      "username": "user"
+    },
+    {
+      "id": "898119",
+      "username": "eman",
+      "password": "123",
+      "role": 2,
+      "details": {
+        "email": "eman@user.com",
+        "name": "Eman Ahmed"
+      }
+    }
+  ]
+}
